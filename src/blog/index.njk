@@ -1,0 +1,25 @@
+---
+layout: layouts/blog.njk
+title: Blog 
+eleventyExcludeFromCollections: true
+
+---
+
+<h1>{{ title }}</h1>
+
+<ul>
+    {% for post in collections.posts %}
+        <li>
+            <a href={{ post.url }}>{{ post.data.title }}</a>
+        </li>
+        
+    {% endfor %}
+</ul>
+
+
+
+  
+
+
+
+

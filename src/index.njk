@@ -1,0 +1,25 @@
+---
+layout: layouts/homepage.njk
+title: Computer Problems Fixed
+eleventyExcludeFromCollections: true
+---
+
+{% block content %}
+    {% for post in collections.posts | reverse %}
+    <div class="blogtext">
+        
+            <h1>{{ post.data.title }}</h1>
+            {{ post.data.date }}
+        
+        <P>
+        {% excerpt post %}
+        <p><a href="{{post.url}}">Read More</a></p>  
+    </div>
+    {% endfor %}
+
+{% endblock %}
+    
+
+
+
+

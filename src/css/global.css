@@ -1,0 +1,104 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background-color: lightgrey;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+.hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/img/header.png");
+  height: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+/* 
+.menu li:last-child {
+    float: right;
+}
+*/
+
+.menu li {
+  float: left;
+}
+
+
+
+.menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
+
+.menu li a:hover {
+  background-color: #808080;
+}
+
+
+.container-footer {
+  width: 100%;
+  height: 10%
+}
+
+.footer {
+  background: #333;
+  width: 100%;
+  height: 100%;
+
+}
+
+.footer-text {
+  text-align: left;
+  display: block;
+  color: white;
+  padding: 14px 16px;
+
+}
+
+.blogtext {
+  max-width: 1200px;
+  margin: 20 auto;
+  background-color: white;
+  display: block;
+  padding: 14px 16px
+}
+
+.post_content {
+  max-width: 1200px;
+  margin: 20 auto;
+  background-color: white;
+  display: block;
+  padding: 14px 16px
+}
