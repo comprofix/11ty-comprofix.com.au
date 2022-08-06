@@ -1,5 +1,5 @@
 ---
-layout: layouts/homepage.njk
+layout: layouts/base.njk
 title: Computer Problems Fixed
 eleventyExcludeFromCollections: true
 ---
