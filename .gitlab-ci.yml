@@ -6,9 +6,6 @@ stages:
   - eleventy
   - docker_build
 
-before_script:
-  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-
 eleventy:
   stage: eleventy
   image: node:latest
@@ -25,6 +22,8 @@ eleventy:
     - tags
 
 docker_build:
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   services:
     - docker:dind
   stage: docker_build
