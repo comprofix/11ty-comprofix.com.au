@@ -1,0 +1,16 @@
+stages:
+  - build-eleventy
+build-eleventy:
+  stage: build-eleventy
+  image: node:latest
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - _site/
+  only:
+    - master

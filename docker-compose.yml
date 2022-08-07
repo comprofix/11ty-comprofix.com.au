@@ -1,0 +1,9 @@
+---
+version: '3'
+services:
+  comprofix:
+    build:
+      context: .
+    container_name: comprofix
+    ports:
+      - 8080:80
