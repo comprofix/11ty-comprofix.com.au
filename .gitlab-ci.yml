@@ -20,7 +20,7 @@ eleventy:
     paths:
       - _site/
   only:
-    - tags
+    - master
 
 docker_build:
   before_script:
@@ -35,21 +35,9 @@ docker_build:
     - docker tag $IMAGE_TAG $IMAGE_TAG_LATEST
     - docker push $IMAGE_TAG_LATEST
     - docker rmi $IMAGE_TAG $IMAGE_TAG_LATEST
+    - CURL -X POST $PORTAINER_UPDATE
   only:
-  - tags
-
-docker_deploy:
-  before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-  services:
-    - docker:dind
-  stage: docker_build
-  image: docker:latest
-  script:
-    - docker pull $IMAGE_TAG_LATEST
-  only:
-  - tags
-
+  - master
 
 
 
