@@ -1,6 +1,11 @@
+variables:
+  - IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  - IMAGE_TAG_LATEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
 stages:
   - build-eleventy
   - docker-build
+
 build-eleventy:
   stage: build-eleventy
   image: node:latest
@@ -16,17 +21,16 @@ build-eleventy:
   only:
     - master
 
-services:
-  - docker:dind
-
 docker-build:
+  services:
+    - docker:dind
   stage: docker-build
   image: docker:latest
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
-    - docker push $CI_REGISTRY/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE:latest
-    - docker push $CI_REGISTRY/$CI_REGISTRY_IMAGE:latest
+    - docker build --pull -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
+    - docker tag $IMAGE_TAG $IMAGE_TAG_LATEST
+    - docker push $IMAGE_TAG_LATEST
   only:
   - master
