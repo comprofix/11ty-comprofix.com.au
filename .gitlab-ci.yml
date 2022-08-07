@@ -7,7 +7,6 @@ stages:
   - docker_build
 
 before_script:
-  - docker info
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
 eleventy:
@@ -23,7 +22,7 @@ eleventy:
     paths:
       - _site/
   only:
-    - master
+    - tags
 
 docker_build:
   services:
@@ -37,7 +36,7 @@ docker_build:
     - docker push $IMAGE_TAG_LATEST
     - docker rmi $IMAGE_TAG $IMAGE_TAG_LATEST
   only:
-  - master
+  - tags
 
 
   
