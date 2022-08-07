@@ -34,6 +34,7 @@ docker_build:
     - docker push $IMAGE_TAG
     - docker tag $IMAGE_TAG $IMAGE_TAG_LATEST
     - docker push $IMAGE_TAG_LATEST
+    - docker rmi $IMAGE_TAG $IMAGE_TAG_LATEST
   only:
   - tags
 
