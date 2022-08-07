@@ -43,7 +43,7 @@ portainer_update:
   stage: portainer_update
   image: curlimages/curl
   script:
-    - CURL -X POST $PORTAINER_UPDATE
+    - curl -X POST $PORTAINER_UPDATE
   only:
   - master
 
