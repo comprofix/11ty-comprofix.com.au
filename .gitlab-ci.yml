@@ -2,7 +2,7 @@ stages:
   - build-eleventy
   - docker-build
 build-eleventy:
-  stage: build
+  stage: build-eleventy
   image: node:latest
   cache:
     paths:
@@ -16,8 +16,8 @@ build-eleventy:
   only:
     - master
 
-docker_build:
-  stage: build
+docker-build:
+  stage: docker-build
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
