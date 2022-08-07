@@ -6,6 +6,7 @@ stages:
   - eleventy
   - docker_build
   - docker_deploy
+  - portainer_update
 
 eleventy:
   stage: eleventy
@@ -35,9 +36,16 @@ docker_build:
     - docker tag $IMAGE_TAG $IMAGE_TAG_LATEST
     - docker push $IMAGE_TAG_LATEST
     - docker rmi $IMAGE_TAG $IMAGE_TAG_LATEST
-    - CURL -X POST $PORTAINER_UPDATE
   only:
   - master
+
+  portainer_update:
+    stage: portainer_update
+    image: curlimages/curl
+    script:
+      - CURL -X POST $PORTAINER_UPDATE
+    only:
+    - master
 
 
 
