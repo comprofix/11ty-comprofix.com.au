@@ -1,24 +1,4 @@
-<html>
-  <head>
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="/css/global.css" />
-    <div class="menu">
-    <ul class="menu>">
-      <li class="menu"><a href="/">Home</a></li>
-      <li class="menu"><a href="/disclaimer">Disclaimer</a></li>
-      <li class="menu"><a href="/contact">Contact Me</a></li>
-      <!-- <li class="menu" float=right><a href="#About">Remote Support</a></li> !-->
-    </ul>
-    </div>
-    <div class="hero-image">
-      <div class="hero-text">
-        <h1 style="font-size:50px">Comprofix</h1>
-        <p style="font-size:24px">Computer Problems Fixed</p>
-      </div>
-    </div>
-    {% block head %}
-    {% endblock %}
-  </head>
+{% include "layouts/header.njk" %}
   <body>
   
       {% block content %}
@@ -26,15 +6,4 @@
       {% endblock %}
   
   </body>
-
-  <div class="container-footer">
-  <div class="footer">
-    <span class="footer-text">
-      Built with Eleventy
-      <br>
-      Copyright (c) 2022 - Comprofix
-    </span>
-  </div>
-</div>
-
-</html>
+{% include "layouts/footer.njk" %}
