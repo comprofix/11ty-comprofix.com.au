@@ -1,6 +1,6 @@
 FROM php:8.1-apache
 
-MAINTAINER Matthew McKinnon <support@comprofix.com>
+LABEL Matthew McKinnon <support@comprofix.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 

@@ -34,3 +34,4 @@ docker-build:
     - docker push $IMAGE_TAG_LATEST
   only:
   - master
+  
