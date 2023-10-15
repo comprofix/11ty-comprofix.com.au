@@ -4,7 +4,6 @@ services:
   comprofix:
     container_name: comprofix
     image: registry.gitlab.comprofix.com/comprofix/website:latest
-    container_name: comprofix-website
     restart: unless-stopped
     networks:
       - npm_default
