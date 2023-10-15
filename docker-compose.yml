@@ -2,8 +2,7 @@
 version: '3'
 services:
   comprofix:
+    container_name: comprofix
     image: registry.gitlab.comprofix.com/comprofix/website:latest
     container_name: comprofix-website
-    ports:
-      - 8188:80
     restart: unless-stopped
