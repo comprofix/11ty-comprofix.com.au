@@ -48,7 +48,7 @@ docker_deploy:
     # stop container, remove image.
     - ssh administrator@docker.comprofix.xyz "cd /opt/comprofix; docker-compose down" || true
     # start new container
-    - ssh administrator@docker.comprofix.xyz "scp docker-compose.yml adinistrator@docker.comprofix.xyz:/opt/comprofix"
+    - scp docker-compose.yml adinistrator@docker.comprofix.xyz:/opt/comprofix
     - ssh administrator@docker.comprofix.xyz "cd /opt/comprofix; docker-compose pull; docker-compose up -d"
   only:
   - master
