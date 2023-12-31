@@ -34,8 +34,6 @@ docker_build:
   - master
 
 docker_deploy:
-  before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   stage: docker_deploy
   image: kroniak/ssh-client:3.6
   script:
