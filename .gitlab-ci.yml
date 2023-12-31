@@ -46,20 +46,10 @@ docker_deploy:
     # log into Docker registry
     - ssh administrator@docker.comprofix.xyz "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
     # stop container, remove image.
-    - ssh administrator@docker.comprofix.xyz "docker stop comprofix" || true
-    - ssh administrator@docker.comprofix.xyz "docker rm comprofix" || true
-    - ssh administrator@docker.comprofix.xyz "docker rmi registry.gitlab.comprofix.com/comprofix/website:latest" || true
+    - ssh administrator@docker.comprofix.xyz "cd /opt/comprofix; docker-compose down" || true
     # start new container
-    - ssh administrator@docker.comprofix.xyz "docker run -d 
-      --name=comprofix 
-      --network=traefik 
-      --restart unless-stopped 
-      --label traefik.enable=true
-      --label traefik.http.routers.comprofix.rule=Host\(\`comprofix.com\`\) 
-      --label traefik.http.routers.comprofix.rule=Host\(\`www.comprofix.com\`\) 
-      --label traefik.http.routers.comprofix.entrypoints=https 
-      --label traefik.http.routers.comprofix.tls.certresolver=cloudflare 
-      registry.gitlab.comprofix.com/comprofix/website:latest"
+    - ssh administrator@docker.comprofix.xyz "scp docker-compose.yml adinistrator@docker.comprofix.xyz:/opt/comprofix"
+    - ssh administrator@docker.comprofix.xyz "cd /opt/comprofix; docker-compose pull; docker-compose up -d"
   only:
   - master
 
