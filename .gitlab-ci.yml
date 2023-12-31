@@ -55,10 +55,10 @@ docker_deploy:
       --network=traefik \
       --restart unless-stopped \
       --label traefik.enable=true
-      --label traefik.http.routers.{{container_name}}.rule=Host(`comprofix.com`) \
-      --label traefik.http.routers.{{container_name}}.rule=Host(`www.comprofix.com`) \
-      --label traefik.http.routers.{{container_name}}.entrypoints=https \
-      --label traefik.http.routers.{{container_name}}.tls.certresolver=cloudflare \
+      --label traefik.http.routers.comprofix.rule=Host(`comprofix.com`) \
+      --label traefik.http.routers.comprofix.rule=Host(`www.comprofix.com`) \
+      --label traefik.http.routers.comprofix.entrypoints=https \
+      --label traefik.http.routers.comprofix.tls.certresolver=cloudflare \
       registry.gitlab.comprofix.com/comprofix/website:latest"
   only:
   - master
