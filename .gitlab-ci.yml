@@ -50,15 +50,15 @@ docker_deploy:
     - ssh administrator@docker.comprofix.xyz "docker rm comprofix" || true
     - ssh administrator@docker.comprofix.xyz "docker rmi registry.gitlab.comprofix.com/comprofix/website:latest" || true
     # start new container
-    - ssh administrator@docker.comprofix.xyz "docker run -d \
-      --name=comprofix \
-      --network=traefik \
-      --restart unless-stopped \
+    - ssh administrator@docker.comprofix.xyz "docker run -d 
+      --name=comprofix 
+      --network=traefik 
+      --restart unless-stopped 
       --label traefik.enable=true
-      --label traefik.http.routers.comprofix.rule=Host(`comprofix.com`) \
-      --label traefik.http.routers.comprofix.rule=Host(`www.comprofix.com`) \
-      --label traefik.http.routers.comprofix.entrypoints=https \
-      --label traefik.http.routers.comprofix.tls.certresolver=cloudflare \
+      --label traefik.http.routers.comprofix.rule=Host('comprofix.com') 
+      --label traefik.http.routers.comprofix.rule=Host('www.comprofix.com') 
+      --label traefik.http.routers.comprofix.entrypoints=https 
+      --label traefik.http.routers.comprofix.tls.certresolver=cloudflare 
       registry.gitlab.comprofix.com/comprofix/website:latest"
   only:
   - master
