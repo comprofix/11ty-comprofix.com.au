@@ -5,13 +5,14 @@ services:
     container_name: comprofix
     image: registry.gitlab.comprofix.com/comprofix/website:latest
     restart: unless-stopped
-    recreate: true
     networks:
-      - name: traefik
+      - traefik
     labels:
-      traefik.enable=true
-      traefik.http.routers.{{container_name}}.rule=Host(`comprofix.com`)
-      traefik.http.routers.{{container_name}}.rule=Host(`www.comprofix.com`)
-      traefik.http.routers.{{container_name}}.entrypoints=https
-      traefik.http.routers.{{container_name}}.tls.certresolver=cloudflare
-      
+      - traefik.enable=true
+      - traefik.http.routers.{{container_name}}.rule=Host(`comprofix.com`,`www.comprofix.com`)
+      - traefik.http.routers.{{container_name}}.entrypoints=https
+      - traefik.http.routers.{{container_name}}.tls.certresolver=cloudflare
+
+networks:
+  traefik:
+    external: true
