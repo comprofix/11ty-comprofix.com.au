@@ -63,7 +63,7 @@ docker_deploy:
       --label traefik.http.routers.{{container_name}}.tls.certresolver=cloudflare \
       registry.gitlab.comprofix.com/comprofix/website:latest"
   only:
-  - tags
+  - master
 
 
 
