@@ -33,6 +33,38 @@ docker_build:
   only:
   - master
 
+docker_deploy:
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  stage: docker_deploy
+  image: kroniak/ssh-client:3.6
+  script:
+    - mkdir ~/.ssh
+    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    # log into Docker registry
+    - ssh administrator@docker.comprofix.xyz "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
+    # stop container, remove image.
+    - ssh administrator@docker.comprofix.xyz "docker stop comprofix" || true
+    - ssh administrator@docker.comprofix.xyz "docker rm comprofix" || true
+    - ssh administrator@docker.comprofix.xyz "docker rmi registry.gitlab.comprofix.com/comprofix/website:latest" || true
+    # start new container
+    - ssh administrator@docker.comprofix.xyz "docker run -d \
+      --name=comprofix \
+      --network=traefik \
+      --restart unless-stopped \
+      --label traefik.enable=true
+      --label traefik.http.routers.{{container_name}}.rule=Host(`comprofix.com`) \
+      --label traefik.http.routers.{{container_name}}.rule=Host(`www.comprofix.com`) \
+      --label traefik.http.routers.{{container_name}}.entrypoints=https \
+      --label traefik.http.routers.{{container_name}}.tls.certresolver=cloudflare \
+      registry.gitlab.comprofix.com/comprofix/website:latest"
+  only:
+  - tags
+
 
 
 
