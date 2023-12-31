@@ -38,14 +38,6 @@ docker_build:
   only:
   - master
 
-portainer_update:
-  stage: portainer_update
-  image: curlimages/curl
-  script:
-    - curl -X POST $PORTAINER_UPDATE
-  only:
-  - master
-
 
 
 
