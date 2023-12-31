@@ -6,7 +6,6 @@ stages:
   - eleventy
   - docker_build
   - docker_deploy
-  - portainer_update
 
 eleventy:
   stage: eleventy
