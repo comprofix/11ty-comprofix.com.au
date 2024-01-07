@@ -7,7 +7,10 @@
     "watch": "eleventy --watch",
     "serve": "eleventy --serve",
     "start": "eleventy --serve",
-    "debug": "DEBUG=* eleventy"
+    "debug": "DEBUG=* eleventy",
+    "build:sass:prod": "sass src/static/scss:public/static/css --style compressed",
+    "build:eleventy:prod": "ELEVENTY_ENV=production eleventy",
+    "build:prod": "npm run build:eleventy:prod & npm run build:sass:prod"
   },
   "keywords": [],
   "author": "",
